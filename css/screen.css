@@ -1,0 +1,99 @@
+html {
+    height:100%;
+    padding: 0;
+}
+
+body {
+    background: #BFCDEF url(../images/clouds_bg.png) 0 0 no-repeat;
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    margin: 0;
+    padding: 0;
+}
+
+#container {
+    width: 100%;
+    height: 100%;
+}
+
+.slide {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    -webkit-transition: -webkit-transform 0.5s ease-out;
+    -webkit-transform: translateX(0%)
+}
+
+#slide1 {
+    left: 0;
+    background: url(../images/silhouette.png) 172px 151px no-repeat;
+}
+
+#slide2 {
+    left: 100%;
+}
+
+#slide3 {
+    left: 200%;
+}
+
+#slide4 {
+    left: 300%;
+}
+
+#slide5 {
+    left: 400%;
+}
+
+h1, h2 {
+    text-shadow: #111 2px 2px 2px;
+    color: #fff;
+    font-family: georgia,times new roman,serif;
+    display: inline;
+    padding: 10px;
+    background: #333;
+    border-radius: 3px;
+    -webkit-border-radius: 3px;
+    box-shadow: rgba(0, 0, 0, 0.7) 0 2px 5px;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.7) 0 2px 5px;
+    transform: rotate(-3deg);
+    -webkit-transform: rotate(-3deg);
+    position: absolute;
+    left: 10px;
+}
+
+h3, p {
+    padding: 0 10px
+}
+
+.description {
+    color: #333;
+    font-family: helvetica,arial,sans-serif;
+    text-align: center;
+}
+
+p {
+    font-family: helvetica,arial,sans-serif;
+}
+
+.content {
+    padding-top: 100px;
+    height: 135px;
+}
+
+.instruction {
+    background: #000 url(../images/button_bg.png) 0 0 repeat-x;
+    color: #fff;
+    height: 50px;
+    text-align: center;
+    width: 100%;
+    line-height: 50px;
+}
+
+#heart {
+    margin-left: 205px;
+    -webkit-transition: -webkit-transform 0.2s linear;
+}

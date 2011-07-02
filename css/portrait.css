@@ -1,0 +1,17 @@
+h1 {
+    font-size: 1.3em; 
+    padding: 10px 6px;
+}
+
+.content {
+    height: 294px;
+}
+
+#heart {
+    margin-left: 115px;
+}
+
+#slide1 {
+    left: 0;
+    background: url(../images/silhouette.png) 90px 310px no-repeat;
+}
