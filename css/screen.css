@@ -97,3 +97,17 @@ p {
     margin-left: 205px;
     -webkit-transition: -webkit-transform 0.2s linear;
 }
+
+#battery {
+    position: absolute;
+    top: 100px;
+    left: 50px;
+    -webkit-transition: -webkit-transform 0s linear;
+    z-index: 100;
+}
+
+#batteryContainer {
+    position: absolute;
+    top: 110px;
+    left: 172px;
+}
