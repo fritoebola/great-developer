@@ -3,13 +3,13 @@
   Peter O'Shaughnessy
   July 2010.
 -->
-<html>
+<html manifest="cache.manifest">
   <head>
     <title>Great dev?</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no"/>
     <meta name="apple-mobile-web-app-capable" content="yes"/>
-    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0; user-scalable=no"/>  
     <link href="css/screen.css" rel="stylesheet" type="text/css"/>
     <link href="css/portrait.css" rel="stylesheet" media="all and (orientation:portrait)"/>
     <!--
@@ -21,16 +21,13 @@
     <!-- WKShake by Alex Gibson - see https://github.com/alexgibson/WKShake/ and accompanying licence -->
     <script src="js/wkshake/WKShake.js" type="text/javascript"></script>
     <script src="js/main.js" type="text/javascript"></script>
-    <style>
-    
-    </style>
   </head>
   <body>
     <div id="container">
       <section id="slide1" class="slide intro">
         <h1>Are you a great developer?</h1>
         <div class="content">
-          <p class="description">Designed for iPhones. Best in landscape.</p>
+          <p class="description">Designed for iPhones</p>
           <!--<a href="javascript:var app=new GoodDeveloperApp(); app.swipeLeft();">swipe left</a>-->
         </div>
         <p class="instruction">Swipe left to continue</p>
@@ -62,17 +59,23 @@
           <img id="treeLightbulb" src="images/tree_lightbulb.png" style="display:none"/>
           <!--<a href="javascript:var app=new GoodDeveloperApp(); app.doSeedSplit();">seed split</a>-->
         </div>
-        <p class="instruction">Come up with a good idea to continue</p>
+        <p class="instruction">Generate a good idea to continue</p>
         <img id="tick4" class="tick" src="images/tick.png"/>
       </section>
       <section id="slide5" class="slide joinus">
         <h2>Great, then join our team!</h2>
         <div class="content">
-          <p>Telegraph Media Group are hiring great developers to join our growing Technical team</p>
-          <p>Join us and help us work out the future of news and publishing</p>
+          <p>Telegraph Media Group are looking for great developers to join our growing Technical team.</p>
+          <p>Join us and help us to define the future of news.</p>
+          <p><a href="#" id="viewVacancies">View our current vacancies</a></p>
         </div>
-        <p class="instruction"><a href="#">View our current vacancies</a></p>
+        <p class="instruction"><a href="index.html" id="startAgain">Start again</a></p>
       </section>
+      <div id="addToHomeScreen">
+        <h3>Are you a great developer?</h3>
+        <h4>Please add to home screen</h4>
+        <p>Please use the menu bar below to add to your home screen and launch as an app.</p>
+      </div>
     </div>
   </body>
 </html>

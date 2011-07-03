@@ -2,3 +2,17 @@ Are you a great developer?
 --------------------------
 
 A simple web app game/promotion designed for iPhone only (so far).
+
+It currently needs to be added to the home screen and launched as an app.
+
+Demonstrates:
+
+ - Tap & drag and drop touch events
+ - Shake (accelerator)
+ - Webkit transitions (translate, rotate)
+ - Webkit animation
+ - Offline app-cache
+
+
+By Peter O'Shaughnessy
+Please email me with any questions/feedback: peter.oshaughnessy@gmail.com

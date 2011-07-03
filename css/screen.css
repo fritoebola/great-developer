@@ -93,6 +93,17 @@ p {
     line-height: 50px;
 }
 
+a {
+    color: #fff;
+}
+
+#viewVacancies {
+    padding: 6px;
+    background: #333;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
 #heart {
     margin-left: 205px;
     -webkit-transition: -webkit-transform 0.1s linear;
@@ -148,3 +159,30 @@ p {
     }
 }
 
+#addToHomeScreen {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    color: #fff;
+    background-color: #000;
+    opacity: 0.8;
+    z-index: 30;
+    text-align: center;
+    top: 0;
+    left: 0;
+    display: none;
+    padding-top: 30px;
+}
+
+#addToHomeScreen h3 {
+    font-family: georgia,times new roman,serif;
+    font-size: 1.3em;
+    margin-top: 0;
+}
+
+#addToHomeScreen h4 {
+    font-family: georgia,times new roman,serif;
+    color: #ff0000;
+    margin-top: 20px;
+    text-shadow: #000 4px 4px 4px;    
+}

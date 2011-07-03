@@ -26,3 +26,51 @@ h1 {
     top: 210px;
     left: 142px;
 }
+
+#seedLeft {
+    position: absolute;
+    top: 100px;
+    left: 100px;
+}
+
+#seedRight {
+    position: absolute;
+    top: 100px;
+    left: 133px;
+}
+
+.tick {
+    position: absolute;
+    top: 650px;
+    left: 105px;
+}
+
+#seedLeft {
+    top: 280px;
+    left: 140px;
+}
+
+#seedRight {
+    top: 280px;
+    left: 157px;
+}
+
+#treeLightbulb {
+    top: 228px;
+    left: 118px;
+}
+
+.joinus h2 {
+    font-size: 1.3em;
+}
+
+#addToHomeScreen {
+    height: 150%;
+    width: 150%;
+    font-size: 1.5em;
+    line-height: 1.5em;
+}
+
+#addToHomeScreen h3 {
+    margin-top: 20px;
+}

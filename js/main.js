@@ -59,6 +59,12 @@ function GoodDeveloperApp() {
 
     };
 
+    this.restart = function() {
+
+        window.location = 'index.html';
+
+    };
+
     /* Swipe-related functions */
 
     this.prepareSwipe = function(event) {
@@ -210,6 +216,8 @@ function GoodDeveloperApp() {
 
         $('#heart').bind('touchend', function(e) { _this.doHeartBeat(); });
 
+        $('#startAgain').bind('touchend', function(e) { _this.restart(); });
+
     };
 
     // We may as well support as much on a non-touch device as we can
@@ -231,7 +239,20 @@ function GoodDeveloperApp() {
 
     };
 
+    // Overlay a message if it's not added to home screen
+    this.checkHomeScreenApp = function() {
+      
+        if( !window.navigator.standalone ) {
+
+            $('#addToHomeScreen').show();
+
+        }
+
+    };
+
     this.initialise = function() {
+
+        this.checkHomeScreenApp();
 
         this.setupSwipeEvents();
         this.setupTapEvents();
