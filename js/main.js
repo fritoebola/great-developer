@@ -31,6 +31,8 @@ function GoodDeveloperApp() {
 
         var newX = 0 - (this.currentSlide * 100);
         
+        console.log( 'slide = ' + this.currentSlide + ' newX = ' + newX );
+
         $('.slide').css('-webkit-transform', 'translateX('+newX+'%)');
         
         this.currentSlide++;
@@ -41,8 +43,6 @@ function GoodDeveloperApp() {
 
         var newX = 200 - (this.currentSlide * 100);
 
-        console.log( 'slide = ' + this.currentSlide + ' newX = ' + newX );
-
         $('.slide').css('-webkit-transform', 'translateX('+newX+'%)');
 
         this.currentSlide--;
@@ -50,6 +50,8 @@ function GoodDeveloperApp() {
     };
     
     this.showTickAndContinue = function() {
+
+        console.log('show tick and continue');
 
         $('#tick'+this.currentSlide)[0].style.webkitAnimationName = 'tickUpAndDown';
         $('#tick'+this.currentSlide)[0].style.webkitAnimationDuration = '3s';
@@ -65,6 +67,13 @@ function GoodDeveloperApp() {
     };
 
     this.restart = function() {
+
+        this.touchStartX = 0;
+        this.touchStartY = 0;
+
+        this.heartTaps = 0;
+
+        this.batteryDrag = false;
 
         $('#battery').css('-webkit-transform', 'translate(0px,0px)');
 
@@ -85,10 +94,10 @@ function GoodDeveloperApp() {
         
         if( event.target.id == 'battery' ) {
             // If battery, prepare drag and drop
-            batteryDrag = true;
+            this.batteryDrag = true;
         } else {
             // Otherwise it may change slides
-            batteryDrag = false;
+            this.batteryDrag = false;
         }
         
         var touch = event.originalEvent.touches[0] || event.originalEvent.changedTouches[0];
@@ -122,23 +131,21 @@ function GoodDeveloperApp() {
 
         var touch = event.originalEvent.touches[0] || event.originalEvent.changedTouches[0];
 
-        if( batteryDrag ) {
+        if( this.batteryDrag && this.currentSlide == 3 ) {
 
             var newX = touch.pageX - this.batteryStartX - ($('#battery').width()/2);
             var newY = touch.pageY - this.batteryStartY - ($('#battery').height()/2);
 
             $('#battery').css('-webkit-transform', 'translate('+newX+'px,'+newY+'px)');
 
-            console.log( touch.pageX + ' >= ' + this.batteryContainerX);
-            console.log( touch.pageX + ' <= ' + (this.batteryContainerX + $('#batteryContainer').width()) );
+            console.log( 'x ' + touch.pageX + ' this.batteryContainerX ' + this.batteryContainerX );
 
-            console.log( touch.pageY + ' >= ' + this.batteryContainerY);
-            console.log( touch.pageY + ' <= ' + (this.batteryContainerY + $('#batteryContainer').height()) );
-
-            if( touch.pageX >= this.batteryContainerX && 
-                touch.pageX <= this.batteryContainerX + $('#batteryContainer').width() && 
+            if( touch.pageX >= this.batteryContainerX + 80 && 
+                touch.pageX <= this.batteryContainerX + $('#batteryContainer').width() - 70 && 
                 touch.pageY >= this.batteryContainerY && 
                 touch.pageY <= this.batteryContainerY + $('#batteryContainer').height() ) {
+
+                this.batteryDrag = false;
 
                 this.showTickAndContinue();
 
@@ -186,7 +193,7 @@ function GoodDeveloperApp() {
 
         this.heartTaps++;
 
-        if( this.heartTaps > 2 ) {
+        if( this.heartTaps > 2 && this.currentSlide == 2 ) {
             this.heartTaps = 0;
             this.showTickAndContinue();
         }
@@ -219,7 +226,7 @@ function GoodDeveloperApp() {
 
         $(document).bind('touchstart', function(e) { e.preventDefault(); _this.prepareSwipe(e) });
 
-        $(document).bind('touchend', function(e) { e.preventDefault(); _this.handleSwipe(e); }); 
+        $(document).bind('touchmove', function(e) { e.preventDefault(); _this.handleSwipe(e); }); 
 
     };
 
