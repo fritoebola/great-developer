@@ -95,7 +95,7 @@ p {
 
 #heart {
     margin-left: 205px;
-    -webkit-transition: -webkit-transform 0.2s linear;
+    -webkit-transition: -webkit-transform 0.1s linear;
 }
 
 #battery {
@@ -103,7 +103,7 @@ p {
     top: 100px;
     left: 50px;
     -webkit-transition: -webkit-transform 0s linear;
-    z-index: 100;
+    z-index: 10;
 }
 
 #batteryContainer {
@@ -111,3 +111,40 @@ p {
     top: 110px;
     left: 172px;
 }
+
+#seedLeft {
+    position: absolute;
+    top: 150px;
+    left: 220px;
+    -webkit-transition: -webkit-transform 1s ease-in;
+}
+
+#seedRight {
+    position: absolute;
+    top: 150px;
+    left: 237px;
+    -webkit-transition: -webkit-transform 1s ease-in;
+}
+
+#treeLightbulb {
+    position: absolute;
+    top: 100px;
+    left: 198px;
+}
+
+.tick {
+    position: absolute;
+    top: 600px;
+    left: 195px;
+    z-index: 20;
+}
+
+@-webkit-keyframes tickUpAndDown {
+    50% {
+        -webkit-transform: translateY(-520px);
+    }
+    100% {
+        -webkit-transform: translateY(0px);
+    }
+}
+

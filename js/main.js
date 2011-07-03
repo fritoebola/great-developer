@@ -20,6 +20,47 @@ function GoodDeveloperApp() {
     this.batteryContainerX = parseInt( $('#batteryContainer').css('left').replace('px','') );
     this.batteryContainerY = parseInt( $('#batteryContainer').css('top').replace('px','') );
 
+    /* Slide movement/progress-related functions */
+
+    this.moveSlidesLeft = function() {
+
+        var newX = 0 - (this.currentSlide * 100);
+        
+        $('.slide').css('-webkit-transform', 'translateX('+newX+'%)');
+        
+        this.currentSlide++;
+
+    };
+
+    this.moveSlidesRight = function() {
+
+        var newX = 200 - (this.currentSlide * 100);
+
+        console.log( 'slide = ' + this.currentSlide + ' newX = ' + newX );
+
+        $('.slide').css('-webkit-transform', 'translateX('+newX+'%)');
+
+        this.currentSlide--;
+
+    };
+    
+    this.showTickAndContinue = function() {
+
+        $('#tick'+this.currentSlide)[0].style.webkitAnimationName = 'tickUpAndDown';
+        $('#tick'+this.currentSlide)[0].style.webkitAnimationDuration = '3s';
+        
+        setTimeout(function() {
+
+            $('#tick'+_this.currentSlide)[0].style.webkitAnimationName = '';
+
+            _this.moveSlidesLeft();
+            
+        }, 3000);
+
+    };
+
+    /* Swipe-related functions */
+
     this.prepareSwipe = function(event) {
         
         if( event.target.id == 'battery' ) {
@@ -37,29 +78,7 @@ function GoodDeveloperApp() {
 
     };
 
-    this.moveSlidesLeft = function(event) {
-
-        var newX = 0 - (this.currentSlide * 100);
-        
-        $('.slide').css('-webkit-transform', 'translateX('+newX+'%)');
-        
-        this.currentSlide++;
-
-    };
-
-    this.moveSlidesRight = function(event) {
-
-        var newX = 200 - (this.currentSlide * 100);
-
-        console.log( 'slide = ' + this.currentSlide + ' newX = ' + newX );
-
-        $('.slide').css('-webkit-transform', 'translateX('+newX+'%)');
-
-        this.currentSlide--;
-
-    };
-
-    this.swipeLeft = function(event) {
+    this.swipeLeft = function() {
 
         // Swiping left only allowed for slide 1 into slide 2
         if( this.currentSlide == 1 ) {
@@ -68,7 +87,7 @@ function GoodDeveloperApp() {
 
     };
 
-    this.swipeRight = function(event) {
+    this.swipeRight = function() {
 
         // Currently disabled
         /*
@@ -101,7 +120,7 @@ function GoodDeveloperApp() {
                 touch.pageY >= this.batteryContainerY && 
                 touch.pageY <= this.batteryContainerY + $('#batteryContainer').height() ) {
 
-                this.moveSlidesLeft();
+                this.showTickAndContinue();
 
             }
 
@@ -122,6 +141,8 @@ function GoodDeveloperApp() {
         }
         
     };
+
+    /* Slide 2 heart-beat functions */
 
     this.increaseHeartSize = function() {
 
@@ -147,10 +168,35 @@ function GoodDeveloperApp() {
 
         if( this.heartTaps > 2 ) {
             this.heartTaps = 0;
-            this.moveSlidesLeft();
+            this.showTickAndContinue();
         }
 
     };
+
+    /* Slide 4 seed functions */
+
+    this.doSeedSplit = function() {
+
+        $('#seedRight')[0].addEventListener('webkitTransitionEnd', function(event) {
+            $('#treeLightbulb').fadeIn();
+            _this.showTickAndContinue(true);
+        });
+
+        $('#seedLeft').css('-webkit-transform', 'rotate(-70deg) translateX(-40px)');
+        $('#seedRight').css('-webkit-transform', 'rotate(70deg) translateX(40px)');
+
+    };
+
+    this.handleShake = function() {
+
+        // Just used on slide 4
+        if( this.currentSlide == 4 ) {
+            this.doSeedSplit();
+        }
+
+    };
+
+    /* Setup event handling functions */
 
     this.setupSwipeEvents = function() {
 
@@ -173,11 +219,24 @@ function GoodDeveloperApp() {
         
     };
 
+    // Uses WKShake by Alex Gibson - see https://github.com/alexgibson/WKShake/
+    this.setupShakeEvents = function() {
+        
+	      var shakeEvent = new WKShake();
+        //start listening for shake event. 
+	      shakeEvent.start();
+        shakeEvent.shakeEventDidOccur = function() {
+            _this.handleShake();
+        };
+
+    };
+
     this.initialise = function() {
 
         this.setupSwipeEvents();
         this.setupTapEvents();
         this.setupClickEvents();
+        this.setupShakeEvents();
 
     };
 

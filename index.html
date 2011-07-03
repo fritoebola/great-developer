@@ -18,8 +18,12 @@
     <link rel="apple-touch-icon" href="images/silhouette_ios_home.png" />
     <link rel="apple-touch-startup-image" href="images/clouds_startup.png">
     <script src="js/jquery-1.6.1.min.js" type="text/javascript"></script>
-    <!--<script src="js/jquery.mobile-1.0b1.min.js" type="text/javascript"></script>-->
+    <!-- WKShake by Alex Gibson - see https://github.com/alexgibson/WKShake/ and accompanying licence -->
+    <script src="js/wkshake/WKShake.js" type="text/javascript"></script>
     <script src="js/main.js" type="text/javascript"></script>
+    <style>
+    
+    </style>
   </head>
   <body>
     <div id="container">
@@ -39,20 +43,27 @@
           <!--<a href="javascript:app.swipeRight();">swipe right</a>-->
         </div>
         <p class="instruction">Get the heart beating to continue</p>
+        <img id="tick2" class="tick" src="images/tick.png"/>
       </section>
       <section id="slide3" class="slide energy">
-        <h2>Are you energetic?</h2>
+        <h2>Do you have energy?</h2>
         <div class="content">
           <img id="battery" src="images/battery.png"/>
           <img id="batteryContainer" src="images/battery_container.png"/>
         </div>
         <p class="instruction">Produce energy to continue</p>
+        <img id="tick3" class="tick" src="images/tick.png"/>
       </section>
       <section id="slide4" class="slide imagination">
         <h2>Are you imaginitive?</h2>
         <div class="content">
+          <img id="seedLeft" src="images/seed_left.png"/>
+          <img id="seedRight" src="images/seed_right.png"/>
+          <img id="treeLightbulb" src="images/tree_lightbulb.png" style="display:none"/>
+          <!--<a href="javascript:var app=new GoodDeveloperApp(); app.doSeedSplit();">seed split</a>-->
         </div>
         <p class="instruction">Come up with a good idea to continue</p>
+        <img id="tick4" class="tick" src="images/tick.png"/>
       </section>
       <section id="slide5" class="slide joinus">
         <h2>Great, then join our team!</h2>

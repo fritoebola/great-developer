@@ -9,9 +9,20 @@ h1 {
 
 #heart {
     margin-left: 115px;
+    margin-top: 50px;
 }
 
 #slide1 {
     left: 0;
     background: url(../images/silhouette.png) 90px 310px no-repeat;
+}
+
+#battery {
+    top: 200px;
+    left: 20px;
+}
+
+#batteryContainer {
+    top: 210px;
+    left: 142px;
 }
