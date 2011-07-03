@@ -13,6 +13,8 @@ function GoodDeveloperApp() {
     this.touchStartY = 0;
 
     this.heartTaps = 0;
+    this.doingHeartBeat = false;
+    this.showingTick = false;
 
     this.batteryDrag = false;
     this.batteryStartX = parseInt( $('#battery').css('left').replace('px','') );
@@ -20,10 +22,6 @@ function GoodDeveloperApp() {
     this.batteryContainerX = parseInt( $('#batteryContainer').css('left').replace('px','') );
     this.batteryContainerY = parseInt( $('#batteryContainer').css('top').replace('px','') );
 
-    this.seedSplitFinish = function(event) {
-        $('#treeLightbulb').fadeIn();
-        _this.showTickAndContinue(true);
-    };
 
     /* Slide movement/progress-related functions */
 
@@ -36,6 +34,8 @@ function GoodDeveloperApp() {
         $('.slide').css('-webkit-transform', 'translateX('+newX+'%)');
         
         this.currentSlide++;
+
+        this.showingTick = false;
 
     };
 
@@ -51,18 +51,24 @@ function GoodDeveloperApp() {
     
     this.showTickAndContinue = function() {
 
-        console.log('show tick and continue');
+        if( !this.showingTick ) {
 
-        $('#tick'+this.currentSlide)[0].style.webkitAnimationName = 'tickUpAndDown';
-        $('#tick'+this.currentSlide)[0].style.webkitAnimationDuration = '3s';
-        
-        setTimeout(function() {
-
-            $('#tick'+_this.currentSlide)[0].style.webkitAnimationName = '';
-
-            _this.moveSlidesLeft();
+            this.showingTick = true;
             
-        }, 3000);
+            console.log('show tick and continue');
+
+            $('#tick'+this.currentSlide)[0].style.webkitAnimationName = 'tickUpAndDown';
+            $('#tick'+this.currentSlide)[0].style.webkitAnimationDuration = '3s';
+            
+            setTimeout(function() {
+            
+                $('#tick'+_this.currentSlide)[0].style.webkitAnimationName = '';
+
+                _this.moveSlidesLeft();
+            
+            }, 3000);
+
+        }
 
     };
 
@@ -172,35 +178,43 @@ function GoodDeveloperApp() {
     /* Slide 2 heart-beat functions */
 
     this.increaseHeartSize = function() {
-
         $('#heart').css('-webkit-transform', 'scale(1.2)');
-
     };
 
-    this.decreaseHeartSize = function() {
-
+    this.decreaseHeartSize = function(event) {
         $('#heart').css('-webkit-transform', 'scale(1)');
-
     };
 
     this.doHeartBeat = function() {
 
-        $('#heart')[0].addEventListener('webkitTransitionEnd', function(event) {
-            _this.decreaseHeartSize();
-        });
+        if( !this.doingHeartBeat ) {
 
-        this.increaseHeartSize();
+            this.doingHeartBeat = true;
 
-        this.heartTaps++;
+            $('#heart')[0].addEventListener('webkitTransitionEnd', this.decreaseHeartSize);
+            
+            this.increaseHeartSize();
+            
+            this.heartTaps++;
 
-        if( this.heartTaps > 2 && this.currentSlide == 2 ) {
-            this.heartTaps = 0;
-            this.showTickAndContinue();
+            if( this.heartTaps > 2 ) {
+                this.heartTaps = 0;
+                console.log('calling show tick... from doHeartBeat');
+                this.showTickAndContinue();
+            }
+
         }
+
+        this.doingHeartBeat = false;
 
     };
 
     /* Slide 4 seed functions */
+
+    this.seedSplitFinish = function(event) {
+        $('#treeLightbulb').fadeIn();
+        _this.showTickAndContinue(true);
+    };
 
     this.doSeedSplit = function() {
 
@@ -257,6 +271,21 @@ function GoodDeveloperApp() {
 
     };
 
+    this.setupOrientationChangeEvents = function() {
+
+        $('body').bind('orientationchange', function(e) { _this.updateOrientation(); } );
+
+    };
+
+    this.updateOrientation = function() {
+
+        this.batteryStartX = parseInt( $('#battery').css('left').replace('px','') );
+        this.batteryStartY = parseInt( $('#battery').css('top').replace('px','') );
+        this.batteryContainerX = parseInt( $('#batteryContainer').css('left').replace('px','') );
+        this.batteryContainerY = parseInt( $('#batteryContainer').css('top').replace('px','') );        
+
+    };
+
     // Overlay a message if it's not added to home screen
     this.checkHomeScreenApp = function() {
       
@@ -276,6 +305,7 @@ function GoodDeveloperApp() {
         this.setupTapEvents();
         this.setupClickEvents();
         this.setupShakeEvents();
+        this.setupOrientationChangeEvents();
 
     };
 
