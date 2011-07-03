@@ -186,3 +186,7 @@ a {
     margin-top: 20px;
     text-shadow: #000 4px 4px 4px;    
 }
+
+.joinus p {
+    padding: 0 10px;
+}

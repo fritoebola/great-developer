@@ -20,6 +20,11 @@ function GoodDeveloperApp() {
     this.batteryContainerX = parseInt( $('#batteryContainer').css('left').replace('px','') );
     this.batteryContainerY = parseInt( $('#batteryContainer').css('top').replace('px','') );
 
+    this.seedSplitFinish = function(event) {
+        $('#treeLightbulb').fadeIn();
+        _this.showTickAndContinue(true);
+    };
+
     /* Slide movement/progress-related functions */
 
     this.moveSlidesLeft = function() {
@@ -61,7 +66,16 @@ function GoodDeveloperApp() {
 
     this.restart = function() {
 
-        window.location = 'index.html';
+        $('#battery').css('-webkit-transform', 'translate(0px,0px)');
+
+        $('#seedRight')[0].removeEventListener('webkitTransitionEnd', this.seedSplitFinish);
+        $('#seedLeft').css('-webkit-transform', 'rotate(0deg) translateX(0px)');
+        $('#seedRight').css('-webkit-transform', 'rotate(0deg) translateX(0px)');
+        $('#treeLightbulb').css('display','none');        
+
+        $('.slide').css('-webkit-transform', 'translateX(0)');
+
+        this.currentSlide = 1;
 
     };
 
@@ -183,10 +197,7 @@ function GoodDeveloperApp() {
 
     this.doSeedSplit = function() {
 
-        $('#seedRight')[0].addEventListener('webkitTransitionEnd', function(event) {
-            $('#treeLightbulb').fadeIn();
-            _this.showTickAndContinue(true);
-        });
+        $('#seedRight')[0].addEventListener('webkitTransitionEnd', this.seedSplitFinish);
 
         $('#seedLeft').css('-webkit-transform', 'rotate(-70deg) translateX(-40px)');
         $('#seedRight').css('-webkit-transform', 'rotate(70deg) translateX(40px)');
